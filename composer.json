@@ -1,0 +1,17 @@
+{
+    "name": "nguyenvanduocit/diress",
+    "description": "Theme for directory",
+    "authors": [
+        {
+            "name": "nguyenvanduocit",
+            "email": "nguyenvanduocit@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"Diress\\": "inc/"},
+        "files": [
+            "inc/alias-functions.php"
+        ]
+    },
+    "require": {}
+}
