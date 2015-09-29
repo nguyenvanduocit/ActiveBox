@@ -58,8 +58,8 @@ class Header extends Base {
 	 * Run the module
 	 */
 	public function run() {
+		parent::run();
 		add_action( 'diress_page_header', array( $this, 'renderSection' ) );
-		add_action('customize_register', array($this,'registerCustomizer'));
 		add_action( 'customize_preview_init', array($this, 'enqueuePreviewAsset') );
 		add_action( 'diress_render_customize_css', array($this, 'outputCustomizeCss') );
 

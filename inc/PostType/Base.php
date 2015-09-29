@@ -7,7 +7,7 @@
  */
 
 namespace Diress\PostType;
-
+use Diress\Metabox\SimpleMetabox;
 
 abstract class Base {
 	protected $singularName;
@@ -46,6 +46,9 @@ abstract class Base {
 			$this->args = wp_parse_args($this->args, $args);
 		}
 		register_post_type( $this->getPostType(), $this->args );
+		if(isset($this->meta_fields) && is_admin()){
+			$this->initMetabox();
+		}
 	}
 
 	protected function createPostTypeLable () {
@@ -68,6 +71,22 @@ abstract class Base {
 			'menu_name' => sprintf( __( '%s', DIRESS_DOMAIN ), $menu )
 		);
 		return $labels;
+	}
+	public function initMetabox($id = null,$title = null, $fields = null){
+		if(!isset($id)){
+			$id=$this->postType.'_metabox';
+		}
+		if(!isset($fields)){
+			$fields = $this->meta_fields;
+		}
+		if(!isset($title)){
+			$title = "Meta";
+		}
+		$args = array(
+			'post_type'=>$this->postType
+		);
+		$metabox = new SimpleMetabox($id, $title, $args, $fields);
+		$metabox->init();
 	}
 	/**
 	 * @return mixed

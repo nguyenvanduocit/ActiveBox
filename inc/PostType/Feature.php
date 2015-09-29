@@ -8,7 +8,6 @@
 
 namespace Diress\PostType;
 
-use Diress\Metabox\SimpleMetabox;
 use Diress\PostType\Base;
 use Diress\Util;
 
@@ -32,16 +31,6 @@ class Feature extends Base{
 						'title'=>'Feature\'s icon',
 						'value' => 'icon-book-open',
 						'choices' => Util::getElegantIconList()
-				),
-				'number'=>array(
-						'type' => 'range',
-						'name' => 'feature_icon',
-						'title'=>'Feature\'s icon',
-						'value' => '5',
-						'max'=>10,
-						'min'=>0,
-						'step'=>5
-
 				)
 		);
 
@@ -49,19 +38,8 @@ class Feature extends Base{
 
 	public function init() {
 		add_action( 'init', array( $this, 'registerPostType' ));
-		if(is_admin()){
-			$this->initMetabox();
-		}
 	}
-	public function initMetabox(){
-		$id='feature_metabox';
-		$title="Meta";
-		$args = array(
-			'post_type'=>'feature'
-		);
-		$metabox = new SimpleMetabox($id, $title, $args, $this->meta_fields);
-		$metabox->init();
-	}
+
 	/**
 	 * Render the icon
 	 * @param $postId

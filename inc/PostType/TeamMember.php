@@ -22,6 +22,44 @@ class TeamMember extends Base{
 			'supports'=>array( 'title', 'editor', 'thumbnail','comments')
 		);
 		$this->meta_fields = array('role', 'facebook_url', 'twitter_url', 'gplus_url', 'linkedin_url', 'dribbble_url');
+		$this->meta_fields = array(
+			'teammate_role'=>array(
+				'type' => 'text',
+				'name' => 'teammate_role',
+				'title'=>'Role',
+				'value' => 'No role'
+			),
+			'teammate_facebook_url'=>array(
+				'type' => 'text',
+				'name' => 'teammate_facebook_url',
+				'title'=>'Facebook profile url',
+				'value' => 'http://facebook.com/'
+			),
+			'teammate_twitter_url'=>array(
+				'type' => 'text',
+				'name' => 'teammate_twitter_url',
+				'title'=>'Twitter profile url',
+				'value' => 'http://twitter.com/'
+			),
+			'teammate_gplus_url'=>array(
+				'type' => 'text',
+				'name' => 'teammate_gplus_url',
+				'title'=>'Google Plus url',
+				'value' => 'http://plus.google.com/'
+			),
+			'teammate_linkedin_url'=>array(
+				'type' => 'text',
+				'name' => 'teammate_linkedin_url',
+				'title'=>'LinkedIn url',
+				'value' => 'http://linkedin.com/'
+			),
+			'teammate_dribbble_url'=>array(
+				'type' => 'text',
+				'name' => 'teammate_dribbble_url',
+				'title'=>'LinkedIn url',
+				'value' => 'http://dribbble.com/'
+			)
+		);
 	}
 
 	function init() {

@@ -19,7 +19,7 @@ class Work extends Base{
 	public function run() {
 		add_action( 'diress_render_work_module', array( $this, 'renderSection' ) );
 		add_filter('diress_header_menu_items', array($this,'addMenuItem'));
-		add_image_size( 'work-thumbnail', 650, 350, array('center', 'center'));
+		add_image_size( 'work-thumbnail', 650, 350, true);
 	}
 
 	/**

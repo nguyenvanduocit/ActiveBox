@@ -15,19 +15,23 @@ class PostType {
 	/**
 	 * @return \Diress\PostType
 	 */
-	public static function getInstance(){
-		if(is_null(static::$instance)){
+	public static function getInstance() {
+		if ( is_null( static::$instance ) ) {
 			static::$instance = new static();
 		}
+
 		return static::$instance;
 	}
+
 	/** @var  \Diress\PostType\Base[] */
 	protected $postTypes;
-	public function __construct(){
+
+	public function __construct() {
 		$load_posttypes = array(
-				'\Diress\PostType\Work',
-				'\Diress\PostType\Feature',
-				'\Diress\PostType\TeamMember'
+			'\Diress\PostType\Work',
+			'\Diress\PostType\Feature',
+			'\Diress\PostType\TeamMember',
+			'\Diress\PostType\Testimonial'
 		);
 		$load_posttypes = apply_filters( 'diress_posttypes', $load_posttypes );
 		// Get sort order option
@@ -39,6 +43,7 @@ class PostType {
 			$this->postTypes[ $load_postType->getPostType() ] = $load_postType;
 		}
 	}
+
 	/**
 	 * Get gateways.
 	 *
@@ -54,17 +59,19 @@ class PostType {
 	 *
 	 * @return PostType\Base|null
 	 */
-	public function getPostType($postTypeName){
-		if(array_key_exists($postTypeName, $this->postTypes)){
-			return $this->postTypes[$postTypeName];
+	public function getPostType( $postTypeName ) {
+		if ( array_key_exists( $postTypeName, $this->postTypes ) ) {
+			return $this->postTypes[ $postTypeName ];
 		}
+
 		return null;
 	}
+
 	/**
 	 * Register posttype
 	 */
-	public function init(){
-		foreach($this->postTypes as $postTypeName => $postType){
+	public function init() {
+		foreach ( $this->postTypes as $postTypeName => $postType ) {
 			$postType->init();
 		}
 	}

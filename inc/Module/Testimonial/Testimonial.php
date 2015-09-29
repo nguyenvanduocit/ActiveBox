@@ -19,6 +19,7 @@ class Testimonial extends Base{
 	public function run() {
 		add_action( 'diress_render_testimonial_module', array( $this, 'renderSection' ) );
 		add_filter('diress_header_menu_items', array($this,'addMenuItem'));
+		add_image_size( 'testimonial-thumbnail', 997, 500, true);
 	}
 	public function addMenuItem($items){
 		$items['testimonials'] = 'testimonials';

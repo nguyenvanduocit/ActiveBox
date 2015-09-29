@@ -91,6 +91,9 @@ ul li {
 .section {
   padding: 100px 0;
 }
+.section.dark {
+  background: rgba(0, 0, 0, 0.13);
+}
 
 .no-padding {
   padding: 0;
@@ -347,6 +350,10 @@ ul li {
 /* ==========================================================================
 	$Works
 ========================================================================== */
+.works {
+  padding-top: 0;
+}
+
 .work {
   -moz-box-shadow: 0 0 0 1px #fff;
   -webkit-box-shadow: 0 0 0 1px #fff;
@@ -481,6 +488,9 @@ ul li {
 .testimonials p {
   color: #fff;
   font: italic 36px "Cardo", Georgia, "Times New Roman", serif;
+}
+.testimonials p:before, .testimonials p:after {
+  content: '"';
 }
 .testimonials cite {
   color: #fff;

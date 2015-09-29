@@ -36,7 +36,11 @@ abstract class Base {
 		return $this->id;
 	}
 
-	abstract function run();
+	public function run(){
+		if(isset($this->controls)){
+			add_action('customize_register', array($this,'registerCustomizer'));
+		}
+	}
 
 	/**
 	 * @return bool
