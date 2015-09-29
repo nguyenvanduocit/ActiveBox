@@ -22,14 +22,32 @@ class Work extends Base{
 		add_filter('diress_shortcode_map', array($this,'addShortCode'));
 		add_image_size( 'work-thumbnail', 650, 350, array('center', 'center'));
 	}
+
+	/**
+	 * Add shortcode to shortcode map for global register
+	 * @param $shortCodeMap
+	 *
+	 * @return string[]
+	 */
 	public function addShortCode($shortCodeMap){
 		$shortCodeMap['work-grid'] = '\Diress\Module\Work\shortcode\WorkGrid';
 		return $shortCodeMap;
 	}
+
+	/**
+	 * add menu item go main
+	 * @param $items
+	 *
+	 * @return string[]
+	 */
 	public function addMenuItem($items){
 		$items['works'] = 'works';
 		return $items;
 	}
+
+	/**
+	 * Render module section
+	 */
 	public function renderSection(){
 		echo do_shortcode('[work-grid]');
 	}

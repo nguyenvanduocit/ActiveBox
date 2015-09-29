@@ -72,7 +72,7 @@ abstract class Base {
 	}
 
 	public function init_settings() {
-		$this->settings = get_option( 'diress_' . $this->id . '_settings', null );
+		$this->settings = get_theme_mod( 'diress_' . $this->id . '_settings', null );
 		if ( ! $this->settings || ! is_array( $this->settings ) ) {
 			$this->settings = array();
 		}

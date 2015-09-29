@@ -36,6 +36,13 @@ class Diress {
 		$this->Shortcode()->init();
 		// Load and init front
 		$this->Front()->init();
+		// TODO Check if customizer is open
+		// Setup the Theme Customizer settings and controls...
+		$this->Customizer()->mayInit();
+	}
+
+	public function Customizer(){
+		return Customizer::getInstance();
 	}
 	public function Term(){
 		return Term::getInstance();
