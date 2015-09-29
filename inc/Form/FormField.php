@@ -58,17 +58,19 @@ abstract class FormField implements FormFieldInterface{
 
 		switch ( $args['type'] ) {
 			case 'radio':
-				return new scbRadiosField( $args );
+				return new RadiosField( $args );
 			case 'select':
-				return new scbSelectField( $args );
+				return new SelectField( $args );
 			case 'checkbox':
 				if ( isset( $args['choices'] ) ) {
-					return new scbMultipleChoiceField( $args );
+					return new MultipleChoiceField( $args );
 				} else {
-					return new scbSingleCheckboxField( $args );
+					return new SingleCheckboxField( $args );
 				}
+			case 'range':
+				return new RangeField($args);
 			case 'custom':
-				return new scbCustomField( $args );
+				return new CustomField( $args );
 			default:
 				return new TextField( $args );
 		}

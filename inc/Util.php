@@ -42,6 +42,20 @@ class Util {
 		return Util::html( 'a', array( 'href' => esc_url( $url ) ), $title );
 	}
 	public static function admin_notice($msg, $class = 'updated' ){
-		return Util::html( "div class='$class fade'", html( "p", $msg ) );
+		return Util::html( "div class='$class fade'", Util::html( "p", $msg ) );
+	}
+	public static function getElegantIconList(){
+		return array(
+				'icon-mobile'=>'icon-mobile',
+				'icon-laptop'=>'icon-laptop',
+				'icon-desktop'=>'icon-desktop',
+				'icon-tablet'=>'icon-tablet',
+				'icon-phone'=>'icon-phone',
+				'icon-document'=>'icon-document',
+				'icon-documents'=>'icon-documents',
+				'icon-search'=>'icon-search',
+				'icon-notebook'=>'icon-notebook',
+				'icon-book-open'=>'icon-book-open'
+		);
 	}
 }

@@ -62,6 +62,9 @@ class Metabox {
 		$this->post_types = $args['post_type'];
 		$this->context = $args['context'];
 		$this->priority = $args['priority'];
+
+	}
+	public function init(){
 		add_action( 'load-post.php', array( $this, 'pre_register' ) );
 		add_action( 'load-post-new.php', array( $this, 'pre_register' ) );
 	}

@@ -10,6 +10,7 @@ namespace Diress\PostType;
 
 use Diress\Metabox\SimpleMetabox;
 use Diress\PostType\Base;
+use Diress\Util;
 
 class Feature extends Base{
 
@@ -26,10 +27,21 @@ class Feature extends Base{
 
 		$this->meta_fields = array(
 				'feature_icon'=>array(
-						'type' => 'text',
+						'type' => 'select',
 						'name' => 'feature_icon',
 						'title'=>'Feature\'s icon',
-						'value' => 'icon-shield',
+						'value' => 'icon-book-open',
+						'choices' => Util::getElegantIconList()
+				),
+				'number'=>array(
+						'type' => 'range',
+						'name' => 'feature_icon',
+						'title'=>'Feature\'s icon',
+						'value' => '5',
+						'max'=>10,
+						'min'=>0,
+						'step'=>5
+
 				)
 		);
 
@@ -42,12 +54,13 @@ class Feature extends Base{
 		}
 	}
 	public function initMetabox(){
-		$id='feature_metagox';
+		$id='feature_metabox';
 		$title="Meta";
 		$args = array(
 			'post_type'=>'feature'
 		);
 		$metabox = new SimpleMetabox($id, $title, $args, $this->meta_fields);
+		$metabox->init();
 	}
 	/**
 	 * Render the icon
