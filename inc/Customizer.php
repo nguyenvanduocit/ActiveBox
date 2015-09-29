@@ -25,11 +25,15 @@ class Customizer {
 	public function __construct(){
 		$this->sectionName = 'diress_options';
 	}
-	public function mayInit(){
+	public function init(){
 		// Setup the Theme Customizer settings and controls...
 		add_action( 'customize_register' , array( $this , 'register' ) );
+		add_action('customize_save', array($this, 'onCustomizerSave'));
+		add_action( 'wp_head' , array( $this , 'outputCustomizeCss' ) );
 	}
+	public function onCustomizerSave($customizer){
 
+	}
 	/**
 	 * @param $wp_customize \WP_Customize_Manager
 	 */
@@ -42,5 +46,14 @@ class Customizer {
 
 		$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
 		$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
+	}
+	public static function outputCustomizeCss() {
+		?>
+		<!--Customizer CSS-->
+		<style type="text/css">
+			<?php do_action('diress_render_customize_css') ?>
+		</style>
+		<!--/Customizer CSS-->
+		<?php
 	}
 }

@@ -4,8 +4,9 @@
  *@var string $panner_desc
  * @var string $panner_btn_href
  */
+_e($panner_text_color);
 ?>
-<section class="banner" role="banner" style="<?php if(isset($panner_background_image)) {_e("background-image: url({$panner_background_image});");} ?>">
+<section class="banner" role="banner">
 	<header id="header">
 		<div class="header-content clearfix">
 			<a class="logo" href="#"><img src="<?php _e(TEMPLATE_URL) ?>/images/logo.png" alt=""></a>

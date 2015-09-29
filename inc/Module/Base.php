@@ -14,14 +14,13 @@ abstract class Base {
 	 * Setting values.
 	 * @var array
 	 */
-	public $settings = array();
+	protected $settings;
+	public $defaultSettings = array('enabled' => true);
 	/**
-	 * Setting values.
+	 * Customizer control
 	 * @var array
 	 */
-	public $defaultSettings = array(
-		'enabled' => true
-	);
+	protected $controls = array();
 	/**
 	 * 'yes' if the method is enabled
 	 * @var string
@@ -61,7 +60,7 @@ abstract class Base {
 
 		// Get option default if unset
 		if ( ! isset( $this->settings[ $key ] ) ) {
-			$this->settings[ $key ] = isset( $defaultSettings[ $key ] ) ? $defaultSettings[ $key ] : '';
+			$this->settings[ $key ] = isset( $this->defaultSettings[ $key ] ) ? $this->defaultSettings[ $key ] : '';
 		}
 
 		if ( ! is_null( $empty_value ) && empty( $this->settings[ $key ] ) ) {
@@ -75,6 +74,11 @@ abstract class Base {
 		$this->settings = get_theme_mod( 'diress_' . $this->id . '_settings', null );
 		if ( ! $this->settings || ! is_array( $this->settings ) ) {
 			$this->settings = array();
+		}
+		if (isset($this->controls)) {
+			foreach($this->controls as $name=>$args){
+				$this->defaultSettings[$name] = $args['default'];
+			}
 		}
 		$this->settings = wp_parse_args( $this->settings, $this->defaultSettings );
 		if ( ! empty( $this->settings ) && is_array( $this->settings ) ) {
@@ -103,5 +107,12 @@ abstract class Base {
 		global $diress;
 		$template_path =  'inc/Module/'.ucfirst($this->id).'/template/';
 		$diress->Template()->get_template($template_name, $args, $template_path);
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getSettings() {
+		return $this->settings;
 	}
 }

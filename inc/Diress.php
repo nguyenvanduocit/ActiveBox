@@ -38,7 +38,7 @@ class Diress {
 		$this->Front()->init();
 		// TODO Check if customizer is open
 		// Setup the Theme Customizer settings and controls...
-		$this->Customizer()->mayInit();
+		$this->Customizer()->init();
 	}
 
 	public function Customizer(){

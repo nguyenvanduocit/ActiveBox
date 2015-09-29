@@ -7,7 +7,7 @@ $postType = $diress->PostType()->getPostType('work');
 		<div class="row no-gutter">
 			<?php
 			while($wp_query->have_posts()):$wp_query->the_post();
-				$post_thumbnail_id = get_post_thumbnail_id( $post_id );
+				$post_thumbnail_id = get_post_thumbnail_id( get_the_ID() );
 				?>
 			<div class="col-lg-3 col-md-6 col-sm-6 work">
 				<a href="<?php _e($postType->getThumbnailSrc(array('thumbnail_id'=>$post_thumbnail_id, 'size'=>'full'))); ?>" class="work-box">

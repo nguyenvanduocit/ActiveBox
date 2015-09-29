@@ -12,16 +12,8 @@ namespace Diress\Module\Header;
 use Diress\Module\Base;
 
 class Header extends Base {
-	protected $controls;
 	public function __construct() {
 		$this->id = 'header';
-		$this->defaultSettings = array(
-			'enabled'=>true,
-			'panner_text'=>'Your Favorite One Page Multi Purpose Template',
-			'panner_desc'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna vel scelerisque nisl consectetur et.',
-			'panner_btn_text'=>'Explore now',
-			'panner_btn_href'=>'http://laptrinh.senviet.org',
-		);
 		$this->controls = array(
 				"panner_text" => array(
 						'label' => 'Panner text',
@@ -57,16 +49,34 @@ class Header extends Base {
 		$this->init_settings();
 	}
 
+	/**
+	 * Run the module
+	 */
 	public function run() {
 		add_action( 'diress_page_header', array( $this, 'renderSection' ) );
 		add_action('customize_register', array($this,'registerCustomizer'));
 		add_action( 'customize_preview_init', array($this, 'enqueuePreviewAsset') );
+		add_action( 'diress_render_customize_css', array($this, 'outputCustomizeCss') );
+
 	}
+
+	/**
+	 * Output customized css to header
+	 */
+	public function outputCustomizeCss(){
+		echo sprintf('.diress_header_panner_button{background-color:%1$s}', $this->settings['panner_btn_bg_color']);
+		echo sprintf('section.banner{background-image:url(%1$s) !important;}', $this->settings['panner_background_image']);
+	}
+
+	/**
+	 * Enqueue asset for customizer preview
+	 */
 	public function enqueuePreviewAsset(){
 		wp_enqueue_script( 'header-customizer',TEMPLATE_URL.'/inc/Module/Header/js/customizer.js',array( 'jquery','customize-preview' ),DIRESS_VERSION,true );
 	}
 
 	/**
+	 * Register controls to customizer
 	 * @param $wp_customize \WP_Customize_Manager
 	 */
 	public function registerCustomizer($wp_customize){
@@ -112,7 +122,11 @@ class Header extends Base {
 			}
 		}
 	}
+
+	/**
+	 * Render the section
+	 */
 	public function renderSection() {
-		$this->get_template('section.php', $this->settings);
+		$this->get_template('section.php', $this->getSettings());
 	}
 }
