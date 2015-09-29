@@ -21,9 +21,14 @@ class CallToAction extends Base{
 				'default'=>'Are You Ready to Start? Download Now For Free!'
 			),
 			"cta_desc" => array(
-				'label' => 'Panner description',
+				'label' => 'Description',
 				'type'=>'textarea',
 				'default'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna vel scelerisque nisl consectetur et.'
+			),
+			"cta_bg_color" => array(
+				'label' => 'Background color',
+				'type'=>'color',
+				'default'=>'#E8E8E8'
 			),
 			"cta_btn_text" => array(
 				'label' => 'Button text',
@@ -63,6 +68,7 @@ class CallToAction extends Base{
 	 */
 	public function outputCustomizeCss(){
 		echo sprintf('.cta-button{background-color:%1$s}', $this->settings['cta_btn_bg_color']);
+		echo sprintf('#download{background-color:%1$s}', $this->settings['cta_bg_color']);
 	}
 
 	/**

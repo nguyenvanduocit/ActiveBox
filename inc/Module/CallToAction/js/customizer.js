@@ -30,5 +30,11 @@
             $('.cta-button').css('background-color',newval);
         } );
     } );
+    wp.customize( 'diress_CallToAction_settings[cta_bg_color]', function( value ) {
+        value.bind( function( newval ) {
+            console.log(newval);
+            $('#download').css('background-color',newval);
+        } );
+    } );
 
 } )( jQuery );
