@@ -1,0 +1,4 @@
+/*Hide menus panel*/
+#accordion-panel-nav_menus {
+  display: none !important;
+}

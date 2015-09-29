@@ -22,7 +22,9 @@ class Shortcode {
 		return static::$instance;
 	}
 	public function __construct(){
-		$this->shortcode_classes = apply_filters('diress_shortcode_map',array());
+		$this->shortcode_classes = apply_filters('diress_shortcode_map',array(
+			'post_list'=>'\Diress\Shortcode\PostList'
+		));
 	}
 	public function init(){
 		/**
@@ -61,7 +63,6 @@ class Shortcode {
 		$shortcode_handling_class = $this->shortcode_classes[ $code ];
 		/** @var \Diress\Shortcode\ShortcodeInterface $shortcode */
 		$shortcode = new $shortcode_handling_class( $attributes, $content, $code );
-
 		// we expect the sensei class instantiated to implement the Sensei_Shortcode interface
 		if( ! in_array( 'Diress\Shortcode\ShortcodeInterface', class_implements( $shortcode) ) ){
 			$message = "The rendering class for your shortcode: $code, must implement the Diress\\Shortcode\\ShortcodeInterface";

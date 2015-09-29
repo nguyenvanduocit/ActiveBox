@@ -4,12 +4,11 @@
  *@var string $panner_desc
  * @var string $panner_btn_href
  */
-_e($panner_text_color);
 ?>
 <section class="banner" role="banner">
 	<header id="header">
 		<div class="header-content clearfix">
-			<a class="logo" href="#"><img src="<?php _e(TEMPLATE_URL) ?>/images/logo.png" alt=""></a>
+			<a class="logo" href="#"><img class="header_logo" src="<?php if(isset($header_logo_src)) {_e($header_logo_src);} ?>" alt=""></a>
 			<?php do_action('diress_header_after-menu'); ?>
 		</div><!-- header content -->
 	</header><!-- header -->

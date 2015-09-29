@@ -19,19 +19,7 @@ class Work extends Base{
 	public function run() {
 		add_action( 'diress_render_work_module', array( $this, 'renderSection' ) );
 		add_filter('diress_header_menu_items', array($this,'addMenuItem'));
-		add_filter('diress_shortcode_map', array($this,'addShortCode'));
 		add_image_size( 'work-thumbnail', 650, 350, array('center', 'center'));
-	}
-
-	/**
-	 * Add shortcode to shortcode map for global register
-	 * @param $shortCodeMap
-	 *
-	 * @return string[]
-	 */
-	public function addShortCode($shortCodeMap){
-		$shortCodeMap['work-grid'] = '\Diress\Module\Work\shortcode\WorkGrid';
-		return $shortCodeMap;
 	}
 
 	/**
@@ -49,6 +37,6 @@ class Work extends Base{
 	 * Render module section
 	 */
 	public function renderSection(){
-		echo do_shortcode('[work-grid]');
+		$this->get_template('section.php');
 	}
 }

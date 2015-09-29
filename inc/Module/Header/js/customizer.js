@@ -38,8 +38,14 @@
     //Update site link color in real time...
     wp.customize( 'diress_header_settings[panner_background_image]', function( value ) {
         value.bind( function( newval ) {
-            console.log(newval);
             $('.banner').css('background-image', 'url('+newval+')');
+        } );
+    } );
+    //Update site link color in real time...
+    wp.customize( 'diress_header_settings[header_logo_src]', function( value ) {
+        value.bind( function( newval ) {
+            console.log(newval);
+            $('img.header_logo').attr('src', newval);
         } );
     } );
 

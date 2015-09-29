@@ -25,7 +25,8 @@ class PostType {
 	protected $postTypes;
 	public function __construct(){
 		$load_posttypes = array(
-			'\Diress\PostType\Work'
+				'\Diress\PostType\Work',
+				'\Diress\PostType\Feature'
 		);
 		$load_posttypes = apply_filters( 'diress_posttypes', $load_posttypes );
 		// Get sort order option

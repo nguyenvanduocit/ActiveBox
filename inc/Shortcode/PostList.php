@@ -3,15 +3,13 @@
  * Created by PhpStorm.
  * User: nguyenvanduocit
  * Date: 9/29/2015
- * Time: 1:22 AM
+ * Time: 2:44 PM
  */
 
-namespace Diress\Module\Work\shortcode;
+namespace Diress\Shortcode;
 
 
-use Diress\Shortcode\ShortcodeInterface;
-
-class WorkGrid implements  ShortcodeInterface{
+class PostList  implements  ShortcodeInterface{
 	/**
 	 * @var WP_Query to help setup the query needed by the render method.
 	 */
@@ -50,6 +48,19 @@ class WorkGrid implements  ShortcodeInterface{
 	 */
 	protected $exclude;
 	/**
+	 * @var string post_type
+	 */
+	protected $post_type;
+	/**
+	 * @var string parth to the loop
+	 */
+	protected $loop_part;
+	/**
+	 * @var string the in the loop.
+	 */
+	protected $loop_file;
+	protected $template_args;
+	/**
 	 * All constructors must implement and accept $attributes and $content as arguments
 	 *
 	 * @param array $attributes
@@ -61,6 +72,10 @@ class WorkGrid implements  ShortcodeInterface{
 // set up all argument need for constructing the course query
 		$this->number = isset( $attributes['number'] ) ? $attributes['number'] : '10';
 		$this->orderby = isset( $attributes['orderby'] ) ? $attributes['orderby'] : 'date';
+		$this->post_type = isset( $attributes['post_type'] ) ? $attributes['post_type'] : 'post';
+		$this->loop_part = isset( $attributes['loop_part'] ) ? $attributes['loop_part'] : 'inc/Shortcode/template';
+		$this->loop_file = isset( $attributes['loop_file'] ) ? $attributes['loop_file'] : 'loop.php';
+		$this->template_args = isset( $attributes['template_args'] ) ? $attributes['template_args'] : array();
 
 		// set the default for menu_order to be ASC
 		if( 'menu_order' == $this->orderby && !isset( $attributes['order']  ) ){
@@ -95,33 +110,13 @@ class WorkGrid implements  ShortcodeInterface{
 	protected function setup_course_query(){
 		// query defaults
 		$query_args = array(
-			'post_type'        => 'work',
+			'post_type'        => $this->post_type,
 			'post_status'      => 'publish',
 			'orderby'          => $this->orderby,
 			'order'            => $this->order,
 			'posts_per_page'   => $this->number,
 
 		);
-
-		// add the course category taxonomy query
-		if( ! empty( $this->category ) ) {
-
-			$tax_query = array();
-			$term_id = intval( term_exists($this->category) );
-
-			if (! empty( $term_id) ) {
-
-				$tax_query = array(
-					'taxonomy' => 'work-category',
-					'field' => 'id',
-					'terms' => $term_id,
-				);
-
-			}
-
-			$query_args['tax_query'] = array($tax_query);
-
-		}
 
 		// limit the query if the user supplied ids
 		if( ! empty( $this->ids ) && is_array( $this->ids ) ) {
@@ -152,8 +147,7 @@ class WorkGrid implements  ShortcodeInterface{
 		$wp_query = $this->query;
 
 		ob_start();
-		$templatePath = 'inc/Module/Work/template/';
-		$diress->Template()->get_template('loop.php',null, $templatePath);
+		$diress->Template()->get_template($this->loop_file,$this->template_args, $this->loop_part);
 		$shortcode_output =  ob_get_clean();
 		//restore old query
 		$wp_query = $current_global_query;
