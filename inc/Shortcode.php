@@ -63,9 +63,8 @@ class Shortcode {
 		$shortcode = new $shortcode_handling_class( $attributes, $content, $code );
 
 		// we expect the sensei class instantiated to implement the Sensei_Shortcode interface
-		if( ! in_array( '\Diress\Shortcode\ShortcodeInterface', class_implements( $shortcode) ) ){
-
-			$message = "The rendering class for your shortcode: $code, must implement the \\Diress\\Shortcode\\ShortcodeInterface interface";
+		if( ! in_array( 'Diress\Shortcode\ShortcodeInterface', class_implements( $shortcode) ) ){
+			$message = "The rendering class for your shortcode: $code, must implement the Diress\\Shortcode\\ShortcodeInterface";
 			_doing_it_wrong('\Diress\Shortcode::render_shortcode',$message, '1.9.0' );
 
 		}

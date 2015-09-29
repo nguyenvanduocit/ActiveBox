@@ -34,6 +34,12 @@ class Customizer {
 	 * @param $wp_customize \WP_Customize_Manager
 	 */
 	public function register($wp_customize){
+		/**
+		 * This method add some known setting of this theme. If you develop some new plugin, feel fee to use hook 'customize_register' to add your setting.
+		 */
+		$wp_customize->remove_section('static_front_page');
+		$wp_customize->remove_panel('nav_menus');
+
 		$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
 		$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
 	}

@@ -65,17 +65,8 @@ class Front {
 			'caption',
 		) );
 
-		/*
-		 * Enable support for Post Formats.
-		 * See https://developer.wordpress.org/themes/functionality/post-formats/
-		 */
-		add_theme_support( 'post-formats', array(
-			'aside',
-			'image',
-			'video',
-			'quote',
-			'link',
-		) );
+		_remove_theme_support('menus');
+		_remove_theme_support('widgets');
 	}
 
 	/**
