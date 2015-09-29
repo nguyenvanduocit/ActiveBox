@@ -22,12 +22,34 @@ class Admin {
 		}
 		return static::$instance;
 	}
+
 	public function init(){
 		add_action( 'admin_menu', array($this, 'removeUnuseMenu') );
 		add_action( 'admin_enqueue_scripts', array($this, 'enqueueAsset') );
+		add_action('admin_notices', array($this,'adminNotice'));
+	}
+
+	/**
+	 * Show some admin notice
+	 */
+	public function adminNotice(){
+		$dismiss = get_transient('diress_dismiss');
+		$screen = get_current_screen();
+		if( (!$dismiss || !$dismiss['sampledata']) && ($screen->id !='import')  ):?>
+		<div class="notice frash-notice frash-notice-rate" id="frash-notice" data-message="Thanks :)">
+			<div class="frash-notice-logo"></div>
+			<div class="frash-notice-message">You can import sample data to take a look about how your site appears. The sample data file was packed with the theme.</div>
+			<div class="frash-notice-cta">
+				<a class="frash-notice-act button-primary" href="<?php echo admin_url('/import.php') ?>">Import</a>
+				<button class="frash-notice-dismiss" id="import_notice_dimiss">No thanks</button>
+			</div>
+		</div>
+	<?php
+		set_transient('diress_dismiss', array('sampledata'=>true), 10*DAY_IN_SECONDS);
+	endif;
 	}
 	public function enqueueAsset(){
-		wp_enqueue_style( 'diress-actmin', TEMPLATE_URL . '/css/admin.css' );
+		wp_enqueue_style( 'diress-adtmin', TEMPLATE_URL . '/css/admin.css' );
 	}
 
 	public function removeUnuseMenu(){
