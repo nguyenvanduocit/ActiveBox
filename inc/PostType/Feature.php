@@ -8,6 +8,8 @@
 
 namespace Diress\PostType;
 
+use Diress\Metabox\SimpleMetabox;
+use Diress\PostType\Base;
 
 class Feature extends Base{
 
@@ -21,14 +23,32 @@ class Feature extends Base{
 		$this->args = array(
 			'supports'=>array( 'title', 'editor', 'thumbnail')
 		);
-		$this->meta_fields = array('feature_icon');
+
+		$this->meta_fields = array(
+				'feature_icon'=>array(
+						'type' => 'text',
+						'name' => 'feature_icon',
+						'title'=>'Feature\'s icon',
+						'value' => 'icon-shield',
+				)
+		);
 
 	}
 
-	function init() {
+	public function init() {
 		add_action( 'init', array( $this, 'registerPostType' ));
+		if(is_admin()){
+			$this->initMetabox();
+		}
 	}
-
+	public function initMetabox(){
+		$id='feature_metagox';
+		$title="Meta";
+		$args = array(
+			'post_type'=>'feature'
+		);
+		$metabox = new SimpleMetabox($id, $title, $args, $this->meta_fields);
+	}
 	/**
 	 * Render the icon
 	 * @param $postId
