@@ -34,6 +34,8 @@ class Diress {
 		$this->Module()->runActivedModules();
 		// Load and register shortcode
 		$this->Shortcode()->init();
+		// register widget
+		$this->Widget()->init();
 		if(is_admin())
 		{
 			$this->Admin()->init();
@@ -47,6 +49,10 @@ class Diress {
 		$this->Customizer()->init();
 
 		add_action( 'after_setup_theme', array( $this, 'afterSetupTheme' ) );
+		add_action( 'admin_bar_menu', array($this, 'removeUnuseAdminBarItem'), 999 );
+	}
+	public function Widget(){
+		return Widget::getInstance();
 	}
 	public function Admin(){
 		return Admin::getInstance();
@@ -84,6 +90,15 @@ class Diress {
 		return Template::getInstace();
 	}
 	/**
+	 * @param $wp_admin_bar \WP_Admin_Bar
+	 */
+	public function removeUnuseAdminBarItem($wp_admin_bar){
+		$wp_admin_bar->remove_node('new-post');
+		$wp_admin_bar->remove_node('new-user');
+		$wp_admin_bar->remove_node('new-page');
+		$wp_admin_bar->remove_node('comments');
+	}
+	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
 	 * Note that this function is hooked into the after_setup_theme hook, which
@@ -110,17 +125,6 @@ class Diress {
 		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		 */
 		add_theme_support( 'post-thumbnails' );
-		/*
-		 * Switch default core markup for search form, comment form, and comments
-		 * to output valid HTML5.
-		 */
-		add_theme_support( 'html5', array(
-			'search-form',
-			'comment-form',
-			'comment-list',
-			'gallery',
-			'caption',
-		) );
 		_remove_theme_support('menus');
 	}
 }

@@ -25,20 +25,11 @@ class Admin {
 	public function init(){
 		add_action( 'admin_menu', array($this, 'removeUnuseMenu') );
 		add_action( 'admin_enqueue_scripts', array($this, 'enqueueAsset') );
-		add_action( 'admin_bar_menu', array($this, 'removeUnuseAdminBarItem'), 999 );	}
+	}
 	public function enqueueAsset(){
 		wp_enqueue_style( 'diress-actmin', TEMPLATE_URL . '/css/admin.css' );
 	}
 
-	/**
-	 * @param $wp_admin_bar \WP_Admin_Bar
-	 */
-	public function removeUnuseAdminBarItem($wp_admin_bar){
-		$wp_admin_bar->remove_node('new-post');
-		$wp_admin_bar->remove_node('new-user');
-		$wp_admin_bar->remove_node('new-page');
-		$wp_admin_bar->remove_node('comments');
-	}
 	public function removeUnuseMenu(){
 		remove_submenu_page('themes.php', 'nav-menus.php');
 		remove_submenu_page('options-general.php', 'options-discussion.php');

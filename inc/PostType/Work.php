@@ -20,7 +20,7 @@ class Work extends Base{
 		$this->slug = 'work';
 		$this->terms = array('work-category' );
 		$this->args = array(
-			'supports'=>array( 'title', 'excerpt', 'thumbnail','comments')
+			'supports'=>array( 'title', 'excerpt', 'thumbnail')
 		);
 	}
 

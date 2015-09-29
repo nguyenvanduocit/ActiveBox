@@ -19,7 +19,7 @@ class TeamMember extends Base{
 		$this->menuName = 'Team member';
 		$this->slug = 'team-member';
 		$this->args = array(
-			'supports'=>array( 'title', 'editor', 'thumbnail','comments')
+			'supports'=>array( 'title', 'editor', 'thumbnail')
 		);
 		$this->meta_fields = array('role', 'facebook_url', 'twitter_url', 'gplus_url', 'linkedin_url', 'dribbble_url');
 		$this->meta_fields = array(

@@ -540,7 +540,7 @@ ul li {
 .footer h5 {
   margin-bottom: 20px;
 }
-.footer p {
+.footer p, .footer .textwidget {
   color: rgba(255, 255, 255, 0.5);
 }
 .footer a {

@@ -35,10 +35,10 @@ class Footer  extends Base{
 			'id'            => 'diress-footer-1',
 			'description'   => '',
 			'class'         => '',
-			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+			'before_widget' => '<aside id="%1$s" class="footer-col col-md-4 %2$s">',
 			'after_widget'  => '</aside>',
-			'before_title'  => '<h2 class="widgettitle">',
-			'after_title'   => '</h2>'
+			'before_title'  => '<h5 class="widgettitle">',
+			'after_title'   => '</h5>'
 		);
 
 		register_sidebar( $args );
