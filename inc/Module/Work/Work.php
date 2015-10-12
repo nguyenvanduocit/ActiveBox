@@ -8,10 +8,7 @@
 
 namespace Diress\Module\Work;
 
-
-use Diress\Module\Base;
-
-class Work extends Base{
+class Work extends \AEngine\Module\Base{
 	public function __construct() {
 		$this->id = 'work';
 		$this->init_settings();

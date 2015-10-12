@@ -87,7 +87,7 @@ class Diress {
 	 * @return \Diress\Template
 	 */
 	public function Template(){
-		return Template::getInstace();
+		return Template::getInstance();
 	}
 	/**
 	 * @param $wp_admin_bar \WP_Admin_Bar

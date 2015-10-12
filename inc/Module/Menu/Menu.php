@@ -9,9 +9,7 @@
 namespace Diress\Module\Menu;
 
 
-use Diress\Module\Base;
-
-class Menu extends Base{
+class Menu extends \AEngine\Module\Base{
 	public function __construct() {
 		$this->id = 'menu';
 		$this->init_settings();

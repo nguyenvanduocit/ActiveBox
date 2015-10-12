@@ -9,7 +9,7 @@
 namespace Diress\Term;
 
 
-class WorkCategory extends Base{
+class WorkCategory extends \AEngine\Term\Base{
 	public function __construct(){
 		$this->name = 'work-category';
 		$this->singularName ='Work category';

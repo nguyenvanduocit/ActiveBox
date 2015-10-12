@@ -9,7 +9,7 @@
 namespace Diress\PostType;
 
 
-class TeamMember extends Base{
+class TeamMember extends \AEngine\PostType\Base{
 
 	public function __construct(){
 

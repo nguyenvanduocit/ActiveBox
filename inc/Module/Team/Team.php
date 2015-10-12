@@ -9,9 +9,7 @@
 namespace Diress\Module\Team;
 
 
-use Diress\Module\Base;
-
-class Team extends Base{
+class Team extends \AEngine\Module\Base{
 	public function __construct() {
 		$this->id = 'team';
 		$this->init_settings();

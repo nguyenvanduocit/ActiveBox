@@ -9,7 +9,7 @@
 namespace Diress\PostType;
 
 
-class Work extends Base{
+class Work extends \AEngine\PostType\Base{
 
 	public function __construct(){
 

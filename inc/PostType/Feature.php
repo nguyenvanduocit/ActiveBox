@@ -11,7 +11,7 @@ namespace Diress\PostType;
 use Diress\PostType\Base;
 use Diress\Util;
 
-class Feature extends Base{
+class Feature extends \AEngine\PostType\Base{
 
 	public function __construct(){
 

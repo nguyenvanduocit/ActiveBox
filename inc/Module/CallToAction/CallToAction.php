@@ -8,10 +8,7 @@
 
 namespace Diress\Module\CallToAction;
 
-
-use Diress\Module\Base;
-
-class CallToAction extends Base{
+class CallToAction extends \AEngine\Module\Base{
 	public function __construct() {
 		$this->id = 'CallToAction';
 		$this->controls = array(

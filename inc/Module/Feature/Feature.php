@@ -8,10 +8,7 @@
 
 namespace Diress\Module\Feature;
 
-
-use Diress\Module\Base;
-
-class Feature extends Base{
+class Feature extends \AEngine\Module\Base{
 	public function __construct() {
 		$this->id = 'feature';
 		$this->init_settings();

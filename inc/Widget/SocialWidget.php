@@ -8,11 +8,9 @@
 
 namespace Diress\Widget;
 
-
-use Diress\Abstracts\Widget;
 use Diress\Util;
 
-class SocialWidget extends Widget{
+class SocialWidget extends \AEngine\Abstracts\Widget{
 	protected $defaults = array(
 		'title' => 'Social connect',
 		'facebook_url' => '',

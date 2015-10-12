@@ -9,7 +9,7 @@
 namespace Diress\PostType;
 
 
-class Testimonial extends Base{
+class Testimonial extends \AEngine\PostType\Base{
 
 	public function __construct(){
 

@@ -9,9 +9,7 @@
 namespace Diress\Module\Testimonial;
 
 
-use Diress\Module\Base;
-
-class Testimonial extends Base{
+class Testimonial extends \AEngine\Module\Base{
 	public function __construct() {
 		$this->id = 'testimonial';
 		$this->init_settings();
