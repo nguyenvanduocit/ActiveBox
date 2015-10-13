@@ -9,20 +9,11 @@
 namespace Diress;
 
 
-class Diress {
-	/** @var  \Diress\Diress */
-	private static $instance;
-	/**
-	 * @return \Diress\Diress
-	 */
-	public static function getInstance(){
-		if(is_null(static::$instance)){
-			static::$instance = new static();
-		}
-		return static::$instance;
-	}
+use AEngine\API;
+use AEngine\Template;
 
-	/**
+class Diress extends \AEngine\ThemeBase{
+	 /**
 	 * Run the theme
 	 */
 	public function run() {
@@ -51,43 +42,60 @@ class Diress {
 		add_action( 'after_setup_theme', array( $this, 'afterSetupTheme' ) );
 		add_action( 'admin_bar_menu', array($this, 'removeUnuseAdminBarItem'), 999 );
 	}
-	public function Widget(){
-		return Widget::getInstance();
-	}
 	public function Admin(){
 		return Admin::getInstance();
 	}
 	public function Customizer(){
 		return Customizer::getInstance();
 	}
-	public function Term(){
+
+	/**
+	 * @return API
+	 */
+	public function API() {
+		return API::getInstance();
+	}
+
+	/**
+	 * @return Widget
+	 */
+	public function Widget() {
+		return Widget::getInstance();
+	}
+
+	/**
+	 * @return Term
+	 */
+	public function Term() {
 		return Term::getInstance();
 	}
-	public function Shortcode(){
+
+	/**
+	 * @return Shortcode
+	 */
+	public function Shortcode() {
 		return Shortcode::getInstance();
 	}
 
-	public function PostType(){
+	/**
+	 * @return PostType
+	 */
+	public function PostType() {
 		return PostType::getInstance();
 	}
+
 	/**
-	 * @return Front
-	 */
-	public function Front(){
-		return Front::getInstance();
-	}
-	/**
-	 * @return \Diress\Module
+	 * @return \AEngine\Module
 	 */
 	public function Module() {
 		return Module::getInstance();
 	}
 
 	/**
-	 * @return \Diress\Template
+	 * @return Front
 	 */
-	public function Template(){
-		return Template::getInstance();
+	public function Front(){
+		return Front::getInstance();
 	}
 	/**
 	 * @param $wp_admin_bar \WP_Admin_Bar
@@ -126,5 +134,12 @@ class Diress {
 		 */
 		add_theme_support( 'post-thumbnails' );
 		_remove_theme_support('menus');
+	}
+
+	public function getFILE() {
+		return DIRESS_FILE;
+	}
+	public function getDIR() {
+		return DIRESS_DIR;
 	}
 }

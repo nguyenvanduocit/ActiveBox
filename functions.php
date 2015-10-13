@@ -1,4 +1,6 @@
 <?php
+use Diress\Diress;
+
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 define( 'DIRESS_FILE', __FILE__ );
@@ -12,5 +14,5 @@ define( 'DIRESS_DOMAIN', 'diress' );
 require_once DIRESS_DIR . '/vendor/autoload.php';
 
 global $diress;
-$diress = Diress();
+$diress = new Diress();
 $diress->run();

@@ -17,6 +17,7 @@ class Module extends \AEngine\Module{
 	 * @return void
 	 */
 	public function __construct() {
+		wp_die('Fuck');
 		$load_modules = array(
 			'\Diress\Module\Header\Header',
 			'\Diress\Module\Feature\Feature',
