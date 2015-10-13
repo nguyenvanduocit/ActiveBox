@@ -8,7 +8,7 @@
 
 namespace Diress\Module\Footer;
 
-class Footer  extends \AEngine\Module\Base{
+class Footer  extends \AEngine\Module\FrontModule{
 	public function __construct() {
 		$this->defaultSettings['copyright_text'] = '&coppyright Sen Viet';
 		$this->id = 'footer';

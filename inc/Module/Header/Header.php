@@ -9,7 +9,7 @@
 namespace Diress\Module\Header;
 
 
-class Header extends \AEngine\Module\Base {
+class Header extends \AEngine\Module\FrontModule {
 	public function __construct() {
 		$this->id = 'header';
 		$this->controls = array(
