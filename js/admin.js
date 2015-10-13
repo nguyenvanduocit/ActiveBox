@@ -8,7 +8,6 @@
     var import_notice_dimiss = $('#import_notice_dimiss');
     if(import_notice_dimiss){
         import_notice_dimiss.on('click', function(){
-            alert('Fuck you');
         });
     }
 } )( jQuery );

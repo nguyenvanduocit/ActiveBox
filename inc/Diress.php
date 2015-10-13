@@ -27,6 +27,7 @@ class Diress extends \AEngine\ThemeBase{
 		$this->Shortcode()->init();
 		// register widget
 		$this->Widget()->init();
+		$this->Customizer()->init();
 		if(is_admin())
 		{
 			$this->Admin()->init();
@@ -45,6 +46,10 @@ class Diress extends \AEngine\ThemeBase{
 	public function Admin(){
 		return Admin::getInstance();
 	}
+
+	/**
+	 * @return Customizer
+	 */
 	public function Customizer(){
 		return Customizer::getInstance();
 	}
